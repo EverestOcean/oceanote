@@ -1,6 +1,6 @@
 ---
 layout: posts_by_category
 categories: deeplearning
-title: deeplearning
+title: Deeplearning
 permalink: /category/deeplearning
----%
+---
