@@ -1,6 +1,6 @@
 ---
 layout: posts_by_category
-categories: machine learning
+categories: machine-learning
 title: Machine Learning
-permalink: /category/machine_learning
+permalink: /category/machine-learning
 ---
