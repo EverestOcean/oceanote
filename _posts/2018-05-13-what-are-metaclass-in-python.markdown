@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "理解Python元类(Metaclass)"
-date:   2017-05-30 09:00:00 +0800
+date:   2018-05-13 13:00:00 +0800
 categories: [python]
 ---
 ## 目录
@@ -211,7 +211,7 @@ True
 <h3 id="3.1">3.1 什么是元类 </h3>
 
 通过上面的描述，类也是对象， 从而可以知道元类就是创建类的类, 如图1：
-![图1](/Users/ocean/wanghaiyang/everestocean/oceanote/static/img/_posts/python_metaclass/python_metaclass_picture1.png)
+![图1](https://github.com/everestocean/oceanote/blob/gh-pages/static/img/_posts/python_metaclass/python_metaclass_picture1.png)
 
 你定义一个类的目的主要是为了创建一个对象，对吗？ 那么我们知道Python class 也是对象。 那么，元类（metaclass）就是用来创建这些对象的类。你可以通过下面的表达式想象下：
 
