@@ -4,6 +4,9 @@ title:  "理解Python元类(Metaclass)"
 date:   2018-05-13 13:00:00 +0800
 categories: [python]
 ---
+
+这篇文章是从[Stack Overflow](https://stackoverflow.com/questions/100003/what-are-metaclasses-in-python)上讨论Python 元类的帖子中一个非常热的回答中照搬过来的。同时借鉴了CSDN类似文章 [深刻理解Python中的元类(metaclass)以及元类实现单例模式](https://www.cnblogs.com/tkqasn/p/6524879.html)。在这需要感谢以上文章作者的分享，同时在自己博客中记录的目的：一是通过书写能让自己加深对 Python 元类的理解，二是为了保留，方便以后的回顾和再学习。
+
 ## 目录
 * [1. 理解类也是对象](#1)
 
@@ -16,10 +19,8 @@ categories: [python]
 	* [3.2 使用\_\_metaclass\_\_ 属性](#3.2)
 
 	* [3.3 自定义元类](#3.3)
+* [参考文献](#4)
 
-* [4. 为什么用元类替代函数](#4)
-
-* [5. 为什么要使用元类](#5)
 	
 <h2 id="1">1. 理解类也是对象</h2>
 
@@ -278,3 +279,153 @@ Myclass = type('Myclass', (), {})
 ... [...]
 
 ``` 
+例如：当我们写如下代码时：
+
+```
+>>> class Foo(Bar):
+...     pass
+
+```
+在该类定义的时候，并未在内存中生成，直到它被调用， Python做了如下的操作：
+
+1. Foo中有\_\_metaclass\_\_属性吗？如果是，Python会在内存中通过\_\_metaclass\_\_创建一个名字为Foo的类对象（这边是类对象，请注意）
+2. 如果Python没有找到\_\_metaclass\_\_, 它会继续在父类中寻找\_\_metaclass\_\_属性，并尝试做和前面同样的操作
+3. 如果Python在任何父类中都找不到\_\_metaclass\_\_， 它就会在模块层次中去寻找\_\_metaclass\_\_， 并尝试做同样的操作
+4. 如果还是找不到\_\_metaclass\_\_， Python会用内置的type来创建这个类对象
+
+<h3 id="3.3">3.3 自定义元类 </h3>
+
+使用元类的主要目的是在创建类的时能自动改变类。 通常，你会为API做这样的事情，你希望可以创建符合上下文的类。
+
+试想一个非常简单的例子，如果你想在模块里保证类的所有属性都应该是大写的形式。有好几种办法可以办到，但其中一种就是通过设定元类\_\_metaclass\_\_。采用这种方法，模块中所有的类都会通过这个类来创建，我们只需要告诉元类，所有的属性都改写成大写形式就万事大吉了。
+
+**使用函数作为元类**
+
+```
+# the metaclass will automatically get passed the same argument
+# that you usually pass to `type`
+def upper_attr(future_class_name, future_class_parents, future_class_attr):
+    """
+      Return a class object, with the list of its attribute turned
+      into uppercase.
+    """
+
+    # pick up any attribute that doesn't start with '__' and uppercase it
+    uppercase_attr = {}
+    for name, val in future_class_attr.items():
+        if not name.startswith('__'):
+            uppercase_attr[name.upper()] = val
+        else:
+            uppercase_attr[name] = val
+
+    # let `type` do the class creation
+    return type(future_class_name, future_class_parents, uppercase_attr)
+
+__metaclass__ = upper_attr # this will affect all classes in the module
+
+class Foo(): # global __metaclass__ won't work with "object" though
+    # but we can define __metaclass__ here instead to affect only this class
+    # and this will work with "object" children
+    bar = 'bip'
+
+print(hasattr(Foo, 'bar'))
+# Out: False
+print(hasattr(Foo, 'BAR'))
+# Out: True
+
+f = Foo()
+print(f.BAR)
+# Out: 'bip'
+
+```
+
+**使用自定义的类作为元类**
+
+```
+# remember that `type` is actually a class like `str` and `int`
+# so you can inherit from it
+class UpperAttrMetaclass(type):
+    # __new__ is the method called before __init__
+    # it's the method that creates the object and returns it
+    # while __init__ just initializes the object passed as parameter
+    # you rarely use __new__, except when you want to control how the object
+    # is created.
+    # here the created object is the class, and we want to customize it
+    # so we override __new__
+    # you can do some stuff in __init__ too if you wish
+    # some advanced use involves overriding __call__ as well, but we won't
+    # see this
+    def __new__(upperattr_metaclass, future_class_name,
+                future_class_parents, future_class_attr):
+
+        uppercase_attr = {}
+        for name, val in future_class_attr.items():
+            if not name.startswith('__'):
+                uppercase_attr[name.upper()] = val
+            else:
+                uppercase_attr[name] = val
+
+        return type(future_class_name, future_class_parents, uppercase_attr)
+```
+
+但是，这种方式其实不是OOP。我们直接调用了type，而且我们没有改写父类的__new__方法。现在让我们这样去处理:
+
+```
+class UpperAttrMetaclass(type):
+
+    def __new__(upperattr_metaclass, future_class_name,
+                future_class_parents, future_class_attr):
+
+        uppercase_attr = {}
+        for name, val in future_class_attr.items():
+            if not name.startswith('__'):
+                uppercase_attr[name.upper()] = val
+            else:
+                uppercase_attr[name] = val
+
+        # reuse the type.__new__ method
+        # this is basic OOP, nothing magic in there
+        return type.__new__(upperattr_metaclass, future_class_name,
+                            future_class_parents, uppercase_attr)
+```
+
+你可能已经注意到了有个额外的参数upperattr_metaclass，这并没有什么特别的。类方法的第一个参数总是表示当前的实例，就像在普通的类方法中的self参数一样。当然了，为了清晰起见，这里的名字我起的比较长。但是就像self一样，所有的参数都有它们的传统名称。因此，在真实的产品代码中一个元类应该是像这样的：
+
+```
+class UpperAttrMetaclass(type):
+
+    def __new__(cls, clsname, bases, dct):
+
+        uppercase_attr = {}
+        for name, val in dct.items():
+            if not name.startswith('__'):
+                uppercase_attr[name.upper()] = val
+            else:
+                uppercase_attr[name] = val
+
+        return type.__new__(cls, clsname, bases, uppercase_attr)
+```
+
+如果使用super方法的话，我们还可以使它变得更清晰一些。
+
+```
+class UpperAttrMetaclass(type):
+
+    def __new__(cls, clsname, bases, dct):
+
+        uppercase_attr = {}
+        for name, val in dct.items():
+            if not name.startswith('__'):
+                uppercase_attr[name.upper()] = val
+            else:
+                uppercase_attr[name] = val
+
+        return super(UpperAttrMetaclass, cls).__new__(cls, clsname, bases, uppercase_attr)
+```
+
+<h2 id="4"> 参考文献 </h2>
+[1. What are metaclasses in Python?](https://stackoverflow.com/questions/100003/what-are-metaclasses-in-python)
+
+[2. 深刻理解Python中的元类(metaclass)以及元类实现单例模式](https://www.cnblogs.com/tkqasn/p/6524879.html)
+
+[3. 深刻理解Python中的元类(metaclass)](http://blog.jobbole.com/21351/)
