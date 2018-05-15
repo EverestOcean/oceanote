@@ -40,7 +40,7 @@ categories: [deeplearning,machine-learning]
 
 感知机可以被认为是通过获取多个输入，通过某种计算，最终得到一个输出的处理单元，如图1所示：
 
-![感知机(perceptron)](/static/img/_posts/neural-networks/perceptron.png)
+![感知机(perceptron)](/static/img/_posts/perceptron.png)
 
 通过上图可以看出，感知机获取三个输入，并最终输出一个结果。那么接下来的逻辑是，这三个输入与最终的输出结果之间是什么样的关系呢？让我们先从简单的逻辑开始，在此基础上再进一步引申出更复杂的逻辑。
 
