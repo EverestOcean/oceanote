@@ -25,7 +25,10 @@ categories: [machine-learning, scikit-learn]
 
 下图展示了机器学习主要的处理流程：
 
-![feture_extract](/assets/images/scikit_learn/feature_extraction/FeatureExtraction.png)
+<div align="center">
+<img src="/assets/images/scikit_learn/feature_extraction/FeatureExtraction.png" width="80%" height="80%"  />
+</div>
+
 
 *该图片来自于Python Machine Learning by Sebastian Raschka, 2015*
 
@@ -58,15 +61,23 @@ Scikit-learn包不经提供多种机器学习算法。同时提供许多便利�
 
 ### Iris flower data set
 
- ![iris_flower](/assets/images/scikit_learn/feature_extraction/iris-data-set.png)
+<div align="center">
+<img src="/assets/images/scikit_learn/feature_extraction/iris-data-set.png" width="80%" height="80%"  />
+</div>
+
  
 *图片来自：Python Machine Learning by Sebastian Raschka, 2015*
 
 本文中的例子是五十个三种不同类型的鸢尾花样本数据，每个样本包含四个不同的特征，萼片和花瓣的长度和宽度，以厘米为单位。基于这四种特征，Fisher构建了一个线性判别模型来区分这些不同类型的花。更多关于鸢尾花样本数据的描述，请看[iris flower data set](https://en.wikipedia.org/wiki/Iris_flower_data_set)。
 
-![iris_flower_data_set_one](/assets/images/scikit_learn/feature_extraction/Iris_data_set.png)
+<div align="center">
+<img src="/assets/images/scikit_learn/feature_extraction/Iris_data_set.png" width="80%" height="80%"  />
+</div>
 
-![iris_flower_data_set_two](/assets/images/scikit_learn/feature_extraction/Iris-Dataset-PieChartBarPlot.png)
+
+<div align="center">
+<img src="/assets/images/scikit_learn/feature_extraction/Iris-Dataset-PieChartBarPlot.png" width="80%" height="80%"  />
+</div>
 
 
 ### Iris data set 和 scikit-learn

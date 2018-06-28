@@ -85,7 +85,10 @@ $$J(\phi(z), y; w) = -log(\phi(z)) \quad if \quad y = 1$$
 $$J(\phi(z), y; w) = -log(1-\phi(z)) \quad if \quad y = 0$$
 
 
-![cost_y1y0](/assets/images/algorithm/maximum_likehood_estimation/Cost-functions-y1y0.png)
+<div align="center">
+<img src="/assets/images/algorithm/maximum_likehood_estimation/Cost-functions-y1y0.png" width="60%" height="60%"  />
+</div>
+
 
 如图所示，我们可以看到当我们正确的预测一个样本的标签为 $$y = 1$$ 时损失函数的值接近于 0 （绿色曲线）。 从 $$y$$ 轴看，但标签 $$y=0$$ 时损失函数的值接近于 0（蓝色）。
 

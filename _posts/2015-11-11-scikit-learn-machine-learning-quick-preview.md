@@ -117,7 +117,10 @@ Accuracy: 0.60
 
 如果一个模型过度拟合，那么最终的测试表现将会非常的差，主要因为对数据微小的改变，过拟合的模型都会有很大的反应。
 
-![overfitting](/assets/images/scikit_learn/quick_overview/Overfitting.png)
+<div align="center">
+<img src="/assets/images/scikit_learn/quick_overview/Overfitting.png" width="40%" height="40%"  />
+</div>
+
 
 *From Overfit wiki*
 
@@ -171,7 +174,10 @@ plt.show()
 
 下面是我们运行后的结果
 
-![decison_region](/assets/images/scikit_learn/quick_overview/decison_region.png)
+<div align="center">
+<img src="/assets/images/scikit_learn/quick_overview/decison_region.png" width="60%" height="60%"  />
+</div>
+
 
 感知算法对于线性不可分的数据收敛的效果非常不好，所以在实践中使用感知算法非常的少。
 

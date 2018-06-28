@@ -220,11 +220,17 @@ array([1., 2., 3., 4.],
 
 下图展示了数据转换器如何通过训练获取参数，通过如何将这些参数应用于训练数据和测试数据中
 
-![fiting_missing_data](/assets/images/scikit_learn/missing_data/fit-transform-scikit-learn-estimator.png)
+<div align="center">
+<img src="/assets/images/scikit_learn/missing_data/fit-transform-scikit-learn-estimator.png" width="60%" height="60%"  />
+</div>
+
 
 在有监督学习中，在模型训练中除了特征外，还会提供样本对应的标签信息，在训练结束后可以使用 **predict()** 来对新数据进行预测
 
-![scikit-learn-predict-method](/assets/images/scikit_learn/missing_data/fit-transform-scikit-learn-estimator.png)
+<div align="center">
+<img src="/assets/images/scikit_learn/missing_data/fit-transform-scikit-learn-estimator.png" width="60%" height="60%"  />
+</div>
+
 
 图片来自:  Python machine learning by Sebastian Raschka
 

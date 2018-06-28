@@ -38,7 +38,10 @@ categories: [deeplearning, machine-learning]
 
 对于学生从老师的教学中获取知识来看，就是基于老师常年教育积累通过授课的手段转移给学生。
 
-![transfer_learning](/assets/images/transfer_learning/transfer-learning.jpeg)
+<div align="center">
+<img src="/assets/images/transfer_learning/transfer-learning.jpeg" width="60%" height="60%"  />
+</div>
+
 
 根据这个类比，我们将其与神经网络进行对比。将神经网络用来训练某一数据，并且从中获取到相应的信息，也就是我们理解的网络权重。那么这些权重信息也可以被应用到其他的神经网络中。在这个过程中，我们不是从头开始训练其他神经网络，而是在 “迁移” 学习的基础上构建一个全新的网络。
 
@@ -46,12 +49,17 @@ categories: [deeplearning, machine-learning]
 
 Tim 解释说在语言发明之前，每一代人都需要自己重新创造知识，下图展示了知识的增长是如何从一代发展到下一代的：
 
+<div align="center">
+<img src="/assets/images/transfer_learning/Knowledge-growth-graph-1b.png" width="60%" height="60%"  />
+</div>
 
-![knowledge_trans](/assets/images/transfer_learning/Knowledge-growth-graph-1b.png)
 
 然后我们发明了语言，一种能够让知识一代一代传递下去的方式，这就是同一时间知识增长发生的变化
 
-![knowldge_trans_2](/assets/images/transfer_learning/Knowledge-growth-graph-2-1.png)
+<div align="center">
+<img src="/assets/images/transfer_learning/Knowledge-growth-graph-1b.png" width="60%" height="60%"  />
+</div>
+
 
 你可以看到迁移学习是多么的有用。所以，在迁移学习中传递的权重就相当与人类进化中传播知识的语言。
 
@@ -67,7 +75,10 @@ Tim 解释说在语言发明之前，每一代人都需要自己重新创造知�
 
 接下来是一个从手机上识别相应的主题。这是一个分类问题，其中包含4591张图片的训练数据集，和包含1200张图片的测试数据集。该问题主要的目标是将图片自动分成16个不同的类别。在做了一些图像预处理后，作者使用了如下结构的MLP(多层感知机)
 
-![mlp](/assets/images/transfer_learning/mlp.png)
+<div align="center">
+<img src="/assets/images/transfer_learning/mlp.png" width="60%" height="60%"  />
+</div>
+
 
 在将输入图像$$[224 \times 224 \times 3]$$ 拉平成 $$[150528]$$之后，作者采用过了三个包含500，500， 500个神经元的隐藏层，同时输出层使用了16个与需要预测类别相同的神经元。
 
@@ -81,7 +92,10 @@ Epoch 10/10
 
 我们可以看出，最终的训练结果并没有因为增加了训练时长而得到更好的提升。因此作者尝试的使用如下的卷积神经网络(CNN)看是否能增加准确率。
 
-![cnn](/assets/images/transfer_learning/cnn.png)
+<div align="center">
+<img src="/assets/images/transfer_learning/cnn.png" width="60%" height="60%"  />
+</div>
+
 
 作者采用了3个卷积块，每个卷积块的设置如下：
 
@@ -103,7 +117,10 @@ Epoch 10/10
 
 所以作者采用了使用Keras在ImageNet上训练得到的VGG16模型，下图是作者使用到的VGG16模型的结构图：
 
-![vgg](/assets/images/transfer_learning/vgg.png)
+<div align="center">
+<img src="/assets/images/transfer_learning/vgg.png" width="60%" height="60%"  />
+</div>
+
 
 其中唯一有变化的地方是在VGG16的输出结果上增加了一个16个神经元的输出层来适应我们的问题。
 
@@ -129,7 +146,10 @@ Epoch 10/10
 
 下图也许能帮助你决定该如何更好的使用pre-trained模型：
 
-![fine-tune](/assets/images/transfer_learning/finetune1.jpg)
+<div align="center">
+<img src="/assets/images/transfer_learning/finetune1.jpg" width="60%" height="60%"  />
+</div>
+
 
 **场景1 -- 现有数据集太小但是与pre-trained模型的数据有很高的相似度**，因为数据集上有很大的相似度，所以我们不需要重新训练该模型。我们需要做的就是修改输出层，从而能更好的适应现在的问题。我们使用预训练好的模型来做特征提取。假设我们希望使用在ImageNet上训练好的模型来识别新数据集中的猫或者狗时。在这数据集上有高度的相似性，但是我们只是用来识别猫和狗。所以我们修改输出层由原来的1000类修改为2类。
 

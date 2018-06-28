@@ -31,14 +31,19 @@ df_wine.cloumns = ['Class label', 'Alcohol', 'Malic acid', 'Ash',
 df_wine
 ```
 
-![wine_dataset_2](/assets/images/scikit_learn/data_preprocess_2/wine_dataset_2.png)
+<div align="center">
+<img src="/assets/images/scikit_learn/data_preprocess_2/wine_dataset_2.png" width="70%" height="70%"  />
+</div>
 
 
 ```
 df_wine.head()
 ```
 
-![wine_dataset](/assets/images/scikit_learn/data_preprocess_2/wine_dataset.png)
+<div align="center">
+<img src="/assets/images/scikit_learn/data_preprocess_2/wine_dataset.png" width="70%" height="70%"  />
+</div>
+
 
 每个样本隶属于三种不同类型1， 2，3 中的一种。三种类型样本的区别主要在于意大利不同地区生长的不同葡萄类型。
 
@@ -163,7 +168,9 @@ scatter(xx, yy1, color='b')
 scatter(xx, yy2, color='r')
  ```
  
- ![feature_scaling](/assets/images/scikit_learn/data_preprocess_2/feature_scaling.png)
+<div align="center">
+<img src="/assets/images/scikit_learn/data_preprocess_2/feature_scaling.png" width="60%" height="60%"  />
+</div>
  
  
 ### 特征选择（feature selection）
@@ -213,7 +220,10 @@ $$w = yx(x^{T}x + \lambda I^{-1})$$   （2）
 
 通过正则化参数λ，那么我们就可以控制模型在保证权重值小的前提下，更好的适应训练数据
 
-![minmize_cost_w1_w2](/assets/images/scikit_learn/data_preprocess_2/minimizeCost-w1-w2.png)
+<div align="center">
+<img src="/assets/images/scikit_learn/data_preprocess_2/minimizeCost-w1-w2.png" width="60%" height="60%"  />
+</div>
+
 
 我们的主要目标是找到最小化训练数据成本函数的权重系数组合。
 
@@ -223,7 +233,10 @@ $$w = yx(x^{T}x + \lambda I^{-1})$$   （2）
 
 对于L2正则化，下图直观展示了相关的处理逻辑，其中阴影部分为L2项
 
-![L2-minmize-penalty](/assets/images/scikit_learn/data_preprocess_2/L2-minimize-penalty.png)
+<div align="center">
+<img src="/assets/images/scikit_learn/data_preprocess_2/L2-minimize-penalty.png" width="60%" height="60%"  />
+</div>
+
 
 在这模型的权重系数不能超出正则项范围的限制 **budget(C)**
 
@@ -234,7 +247,10 @@ $$ww^{T} \leq C$$
 
 接下来我们来看下 L1正则化
 
-![L1-minmize-penalty](/assets/images/scikit_learn/data_preprocess_2/L1-minimize-penalty.png)
+<div align="center">
+<img src="/assets/images/scikit_learn/data_preprocess_2/L1-minimize-penalty.png" width="60%" height="60%"  />
+</div>
+
 
 正如上图展示的，L1正则化使得某一个权重值取零。从而相比 L2正则化，L1正则化更容易产生稀疏性。
 
@@ -291,7 +307,10 @@ ncol=1, fancybox=True)
 show()
 ```
 
-![L1-weight—plot](/assets/images/scikit_learn/data_preprocess_2/L1-Weight-Plot.png)
+<div align="center">
+<img src="/assets/images/scikit_learn/data_preprocess_2/L1-Weight-Plot.png" width="80%" height="80%"  />
+</div>
+
 
 从上图可知，当惩罚因子$$C = 1/\lambda < 0.1$$ 越大的时候，会导致更多的特征权重接近 0。
 

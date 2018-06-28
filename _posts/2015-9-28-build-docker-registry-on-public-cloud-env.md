@@ -11,7 +11,10 @@ categories: [docker,cloud-computing,operation]
 
 除此以外的另一种常用方案是搭建自己的私有镜像仓库。本文以阿里云的环境为例，将介绍如何在Ubuntu12.04上基于Docker Registry V2，阿里云OSS， Nginx [4]搭建负载均衡自己的Docker镜像私有仓库, 如图下图.
 
-![docker_registry](/assets/images/docker_registry/docker_registry.png)
+<div align="center">
+<img src="/assets/images/docker_registry/docker_registry.png" width="60%" height="60%"  />
+</div>
+
 
 
 <h2>目录</h2>
@@ -72,7 +75,10 @@ sudo apt-get install -y apache2-utils
 
 	**注**：在交互配置中输入相应的信息，其中 Common Name 需要输入docker registry 服务器的域名，例如： docker.xx.com, 与根密钥相同， 不需要输入 challenge password
 
-	![docker_register_2](/assets/images/docker_registry/docker_registry_2.png)
+	<div align="center">
+	<img src="/assets/images/docker_registry/docker_registry_2.png" width="60%" height="60%"  />
+	</div>
+	
 
 * 私有CA 根据请求来签发证书
 

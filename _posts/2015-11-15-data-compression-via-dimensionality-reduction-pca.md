@@ -14,7 +14,10 @@ categories: [machine-learning, scikit-learn]
 
 PCA 顾名思义主要是通过找到数据集的方差最大方向(正交轴方向/主成分)，并且将原数据投射到新的主成分子空间中，从而降低数据的维度。
 
-![PrincipalDirection](/assets/images/scikit_learn/data_compress/PrincipalDirection.png)
+<div align="center">
+<img src="/assets/images/scikit_learn/data_compress/PrincipalDirection.png" width="70%" height="70%"  />
+</div>
+
 
 其中 $$x_{1}$$ 和 $$x_{2}$$ 是原来的特征轴，$$z_{1}$$ 和 $$z_{2}$$是主成分方向。
 
@@ -57,7 +60,11 @@ df_wine = pd.read_csv(
 df_wine.head()
 ```
 
-![wine_dataset](/assets/images/scikit_learn/data_compress/wine_dataset.png)
+<div align="center">
+<img src="/assets/images/scikit_learn/data_compress/wine_dataset.png" width="60%" height="60%"  />
+</div>
+
+
 
 其中 PCA 是无监督学习，也就是样本对应的标签数据信息是不被考虑的。与随机森林对特征进行降维的方法不同的是PCA更多利用特征值之间的关系。
 
@@ -87,7 +94,10 @@ $$\sigma_{jk} = 1/N \sum^{N}_{i=1} (x^{i}_{j} - \mu_{j})(x^{i}_{k} - \mu_{k})$$
 
 三个特征向量对应的协方差矩阵如下:
 
-![covariance_matrix](/assets/images/scikit_learn/data_compress/covariance_matrix.png)
+<div align="center">
+<img src="/assets/images/scikit_learn/data_compress/covariance_matrix.png" width="60%" height="60%"  />
+</div>
+
 
 协方差矩阵的特征向量表示了主成分，其中对于的特征值定义了主成分的等级
 
@@ -165,7 +175,10 @@ legend(loc='best')
 show()
 ```
 
-![explain_variance_ration](/assets/images/scikit_learn/data_compress/explain_variance_ration.png)
+<div align="center">
+<img src="/assets/images/scikit_learn/data_compress/explain_variance_ration.png" width="60%" height="60%"  />
+</div>
+
 
 从图中我们可以看出，第一个主成分蕴含了40%的方差信息，前两个主成分包含了60%的方差信息。
 
@@ -273,7 +286,9 @@ legend(loc='lower left')
 show()
 ```
 
-![two_d_plot](/assets/images/scikit_learn/data_compress/finally_two_dimination.png)
+<div align="center">
+<img src="/assets/images/scikit_learn/data_compress/finally_two_dimination.png" width="60%" height="60%"  />
+</div>
 
 
 ### scikit-learn PCA 实现
@@ -324,7 +339,10 @@ legend(loc='lower left')
 show()
 ```
 
-![scikit-learn-pca](/assets/images/scikit_learn/data_compress/scikit_learn_pca.png)
+<div align="center">
+<img src="/assets/images/scikit_learn/data_compress/scikit_learn_pca.png" width="60%" height="60%"  />
+</div>
+
 
 
 

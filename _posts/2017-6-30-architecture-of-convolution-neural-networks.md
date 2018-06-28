@@ -31,7 +31,10 @@ categories: [deeplearning, machine-learning]
 
 那么计算机可能会把图像分解成一个矩阵，并且存储图像中不同位置上像素点的颜色。其中值1 表示白色，值256表示黑色。
 
-![4image](/assets/images/cnn/4image11.png)
+<div align="center">
+<img src="/assets/images/cnn/4image11.png" width="40%" height="40%"  />
+</div>
+
 
 一旦你使用这个方式存储了图像，那接下来问题是如何让神经网络理解这种编排方式及内部的模式特征。
 
@@ -40,13 +43,19 @@ categories: [deeplearning, machine-learning]
 
 每个图像中的数字都是像素点根据特定的排序组合而成的。
 
-![4image](/assets/images/cnn/4image11.png)
+<div align="center">
+<img src="/assets/images/cnn/4image11.png" width="40%" height="40%"  />
+</div>
+
 
 如果我们想使用全连接神经网络来识别数字图像，那么我们该怎么做呢？
 
 在使用全连接网络中，首先会将图像矩阵拉平成一个$$1*(height*width)$$的数组，并将数组中的像素作为特征，从而来识别图像中的数字。对于神经网络来说，确实很难知道底层到底怎么处理的。
 
-![flat](/assets/images/cnn/flat.png)
+<div align="center">
+<img src="/assets/images/cnn/flat.png" width="80%" height="80%"  />
+</div>
+
 
 对于人而言，也很难理解拉平后的数组是数字4，因为我们失去了像素点的空间信息。
 
@@ -56,11 +65,17 @@ categories: [deeplearning, machine-learning]
 
 在这我们使用一个权重值乘以图像中的每一个像素点。
 
-![image2](/assets/images/cnn/image2.png)
+<div align="center">
+<img src="/assets/images/cnn/image2.png" width="80%" height="80%"  />
+</div>
+
 
 从图中，我们使用肉眼还是能正常的识别出这是一个数字4。但是把它放进全连接网络中，又会将图像拉平成一维数组。所以我们还是无法保留像素直接的空间信息。
 
-![imageflat1](/assets/images/cnn/imageflat1.png)
+<div align="center">
+<img src="/assets/images/cnn/imageflat1.png" width="80%" height="80%"  />
+</div>
+
 
 #### Case 2:
 
@@ -68,7 +83,10 @@ categories: [deeplearning, machine-learning]
 
 让我们来看下，相比直接使用一个像素点，我们可以尝试整合相邻两个像素点之间的信息。这可以让网络了解相邻像素之间的关系。现在我们一次考虑两个像素点，那么我们就需要一次使用两个权重。
 
-![case2](/assets/images/cnn/case2.gif)
+<div align="center">
+<img src="/assets/images/cnn/case2.gif" width="80%" height="80%"  />
+</div>
+
 
 从图中我们可以看出，原来包含4列的矩阵，通过变换后变成了3列矩阵。我们一次使用两个像素点，从而图像在处理后就变小了。虽然图像变小了，但是我们还能清晰的看出来图像中的数字是4。同时，有一个比较重要的点，我们需要认识到，就是我们只考虑了水平方向两个相邻像素点的信息，因此也就只有水平方向的空间特征得以被考虑。
 
@@ -86,7 +104,10 @@ categories: [deeplearning, machine-learning]
 
 我们有个简单直接的方法，沿着权重运动的方向两侧放置零点。
 
-![case3](/assets/images/cnn/case31.gif)
+<div align="center">
+<img src="/assets/images/cnn/case31.gif" width="80%" height="80%"  />
+</div>
+
 
 你可以看到，通过添加零来保留角落的信息。图像的大小也随之增加了。当我们不想让图像的大小变小时可以使用这个方法。
 
@@ -96,11 +117,17 @@ categories: [deeplearning, machine-learning]
 
 权重$$(1, 0.3)$$ 我们得到了下面的结果:
 
-![case41](/assets/images/cnn/case41.png)
+<div align="center">
+<img src="/assets/images/cnn/case41.png" width="40%" height="40%"  />
+</div>
+
 
 当使用权重$$(0.1, 5)$$ 我们得到了下面的结果：
 
-![case42](/assets/images/cnn/case42.png)
+<div align="center">
+<img src="/assets/images/cnn/case42.png" width="40%" height="40%"  />
+</div>
+
 
 结合上述两个输出结果，我们能更清晰的看到图像中数字。因此，我们所做的只是使用多个权重而不是一个来保留关于图像的更多信息。最终的输出将是上述两张图像的结合。
 
@@ -109,7 +136,10 @@ categories: [deeplearning, machine-learning]
 
 上述的提取特征的方法都只是保留了图像水平方向的空间信息。但是在很多时候，我们希望保留除了水平方向之外垂直方向的空间信息。我们可以将原来一维权重数组转换成二维权重矩阵，这样来考虑图像中水平和垂直方向的信息。同样，相比原图像，经过权重变化后的图像在行和列都少了一。
 
-![case5](/assets/images/cnn/case5.gif)
+<div align="center">
+<img src="/assets/images/cnn/case5.gif" width="80%" height="80%"  />
+</div>
+
 
 #### 最终我们到底做了什么
 
@@ -128,17 +158,26 @@ categories: [deeplearning, machine-learning]
 
 在卷积层中具体的处理手法，与上面Case5所描述的是一样的。 假设我们有个 $$6*6$$ 大小的图像。同时我们定义一个权重矩阵，从而来提取图像中特征。
 
-![conv1](/assets/images/cnn/conv1.png)
+<div align="center">
+<img src="/assets/images/cnn/conv1.png" width="60%" height="60%"  />
+</div>
+
 
 我们初始化权重为 3*3 的矩阵。将该权重矩阵扫过图像中的每个像素并得到不同像素点的卷积输出。上图中的结果 429 就是通过点乘权重矩阵和图像对应的像素并求和得到的结果。
 
-![conv1_gif](/assets/images/cnn/conv.gif) 
+<div align="center">
+<img src="/assets/images/cnn/conv.gif" width="60%" height="60%"  />
+</div>
+
 
 这幅$$6*6$$的图像最终被卷积成了$$4*4$$的图像。如果我们把权重矩阵想象成粉刷，那么对图像的卷积就可以想象成在刷一面墙。权重刷子先水平从右向做刷墙，然后垂直从上到下刷墙。
 
 让我们在真实的图像上看下通过卷积后的图像效果：
 
-![convimages](/assets/images/cnn/convimages.png)
+<div align="center">
+<img src="/assets/images/cnn/convimages.png" width="75%" height="75%"  />
+</div>
+
 
 其中权重矩阵就像是不同的滤镜，这些滤镜从图像中提取不同的特征信息。其中一些可能提取是边缘特征，其他的一些可能提取的是颜色特征，又或者一些只是过滤掉一些不想要的噪声。
 
@@ -148,15 +187,24 @@ categories: [deeplearning, machine-learning]
 
 如上所述，权重矩阵对整幅图像一个一个像素的扫描计算。我们可以将权重矩阵如何在图像上移动作为一个超级参数。如果权重矩阵每次移动一个像素，那么我们就称步幅(stride)为1，让我们看下如果步幅为2的情况下是怎么样的？
 
-![strade1](/assets/images/cnn/stride1.gif)
+<div align="center">
+<img src="/assets/images/cnn/stride1.gif" width="60%" height="60%"  />
+</div>
+
 
 正如你所看到的，图像的大小随着步幅的增大在不断的减少。那么通过往图像中填充(padding) 0值，我们就可以解决这个问题。我们同样可以多填充一些0值，从而避免步幅增大导致图像减小的问题。
 
-![zero_padding](/assets/images/cnn/zero-padding.png)
+<div align="center">
+<img src="/assets/images/cnn/zero-padding.png" width="40%" height="40%"  />
+</div>
+
 
 在用零填充后，我们可以看到图像初始形状是如何保留的。这就是所谓的相同的填充（same padding），因为输出图像与输入大小相同。
 
-![padding](/assets/images/cnn/padding.gif)
+<div align="center">
+<img src="/assets/images/cnn/padding.gif" width="60%" height="60%"  />
+</div>
+
 
 通过填充后，我们保留了更多的边界信息，并保留了图像的原始大小。
 
@@ -166,20 +214,28 @@ categories: [deeplearning, machine-learning]
 
 通过不同卷积核处理后的图像重新组合在一起形成多维卷积图像。假设我们有个 $$32*32*3$$ 的输入图像，我们使用10个$$5*5*3$$的卷积核对输入图像做卷积，那么我们就会得到一个 $$28*28*10$$ 的输出结果。
 
-![active_map](/assets/images/cnn/activation-map.png)
+<div align="center">
+<img src="/assets/images/cnn/activation-map.png" width="60%" height="60%"  />
+</div>
 
 
 <h4 id="3.2">3.2 池化层(pooling layer) </h4>
 
 有时候输入图像的尺寸太大，我们需要减少需要训练的参数个数。所以比较直接的做法就是在不同的卷积层中引入池化层。池化层主要目的是为了减少图像的空间大小。池化是独立作用在输入图像的不同深度上，因此图像的深度信息经过池化处理后还是保持不变。最常用的池化操作有最大池化(max pooling)。 
 
-![max_pooling](/assets/images/cnn/maxpool.png)
+<div align="center">
+<img src="/assets/images/cnn/maxpool.png" width="60%" height="60%"  />
+</div>
+
 
 上图所示，我们使用的步长等于2，同时池化维度也是2。最大化处理会对不同深度的图像进行处理，正如我们所看到的一样，$$4*4$$ 的卷积输出在最大化池化后变成了 $$2*2$$ 的输出图像。
 
 让我们看下在真实图像上做最大池化后得到的图像
 
-![pooling](/assets/images/cnn/pooling.png)
+<div align="center">
+<img src="/assets/images/cnn/pooling.png" width="75%" height="75%"  />
+</div>
+
 
 如图所示，我们在卷积图像上做最大化池化处理，可以看出最大化池化任然保留了图像的信息（一辆车停在路边）。如果你仔细看池化后图像的大小是原来的一半。这样可以帮助我们减少训练参数。
 
@@ -206,7 +262,10 @@ categories: [deeplearning, machine-learning]
 
 **CNN** 是由不同的卷积层和池化层有机的组合而成的。让我们看下整个网络将会是怎么工作的。
 
-![cnnimage](/assets/images/cnn/cnnimage.png)
+<div align="center">
+<img src="/assets/images/cnn/cnnimage.png" width="80%" height="80%"  />
+</div>
+
 
 * 向第一层卷积层输入原始图像。卷积输出是一个激活图像。不同的卷积核作用在图像上从而获取不同的特征，并且不断的深入。
 * 不同的卷积核应该提取不同特征，从而帮助我们准确的预测到相应的结果。

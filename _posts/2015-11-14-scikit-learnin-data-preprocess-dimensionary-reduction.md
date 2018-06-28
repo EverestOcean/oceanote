@@ -53,7 +53,10 @@ grid()
 show()
 ```
 
-![SBS-KNN-plot](/assets/images/scikit_learn/data_preprocess_3/SBS-KNN-Plot.png)
+<div align="center">
+<img src="/assets/images/scikit_learn/data_preprocess_3/SBS-KNN-Plot.png" width="60%" height="60%"  />
+</div>
+
 
 从图中可观察得到，通过降低特征的维度，KNN的识别准确率在不断上升。同时在 $$k = 5,6,7,8,9,10$$时识别准确率达到了100%
 
@@ -175,7 +178,10 @@ tight_layout()
 show()
 ```
 
-![feature_importance](/assets/images/scikit_learn/data_preprocess_3/feature_importances.png)
+<div align="center">
+<img src="/assets/images/scikit_learn/data_preprocess_3/feature_importances.png" width="60%" height="60%"  />
+</div>
+
 
 如上图所示，wine 数据集中的特征根据特征的重要性进行了排序，其中特征重要性都进行了归一化，所以他们值的和等于1.0
 

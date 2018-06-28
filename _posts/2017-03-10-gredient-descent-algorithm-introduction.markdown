@@ -50,11 +50,16 @@ categories: [optimization-algorithm,deeplearning,machine-learning]
 
 假设你在山顶，你想走到山脚下的湖边。有一个限制就是你眼睛被蒙着，看不到你前进的方向。在这情况下，该如何走到山脚下的湖边？
 
-![grad_desc1](/assets/images/gradient_descent/grad_desc1.png)
+<div align="center">
+<img src="/assets/images/gradient_descent/grad_desc1.png" width="70%" height="70%"  />
+</div>
+
 
 最好的方法就是不断尝试寻找身边向下走的道路。这样能告诉你应该向什么方向走出新的一步。如果你延着向下的道路方向，那么你就很可能可以走到山脚下的湖边。正如下图所示：
 
-![grad](/assets/images/gradient_descent/grad.png)
+<div align="center">
+<img src="/assets/images/gradient_descent/grad.png" width="70%" height="70%"  />
+</div>
 
 
 接下来，让我们将图上直观的认识转换成数学上的解释，从而得到理论上的支持。
@@ -120,7 +125,10 @@ parameters = parameters - update
 
 从上面的伪代码我们可以看出，我们通过计算参数对应的梯度同时乘以相应的学习率(learning_rate) 来对变量进行更新。其中学习率(learning_rate)是一个控制我们能多快获取到最小值的参数值。学习率(learning_rate)是一个超参数(hyper-parameter), 我们在选择学习率时需要非常的小心。
 
-![learningrate](/assets/images/gradient_descent/learningrates.jpeg)
+<div align="center">
+<img src="/assets/images/gradient_descent/learningrates.jpeg" width="40%" height="40%"  />
+</div>
+
 
 <h4 id="3.2">3.2 Gradient Descent with Momentum</h4>
 
@@ -136,7 +144,10 @@ parameter = parameter + velocity – update
 
 该算法与上述的 vanilla 梯度下降比较类似。但是引入了一个新元素就是velocity(速率)，该值包含了对前一步更新的考虑，同时增加了一个常量 momentum。
 
-![learningrate](/assets/images/gradient_descent/momentum.png)
+<div align="center">
+<img src="/assets/images/gradient_descent/momentum.png" width="40%" height="40%"  />
+</div>
+
 
 <h4 id="3.3">3.3 ADAGRAD</h4>
 
