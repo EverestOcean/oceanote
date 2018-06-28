@@ -54,7 +54,9 @@ Yann LeCun, 深度学习领域的一位知名人士在Quota中的表示：
 
 一个比较实际的例子就是伪造者和艺术作品鉴定员之间的关系。
 
-![forger](/assets/images/gan/forge.jpg)
+<div align="center">
+<img src="/assets/images/gan/forge.jpg" width="60%" height="60%"  />
+</div>
 
 伪造者主要的工作是通过模仿某一知名艺术家的手法伪造出一幅新的作品。如果这幅作品足以以假乱真，那么伪造者就能从中收获一笔丰厚的收益。
 
@@ -68,7 +70,9 @@ Yann LeCun, 深度学习领域的一位知名人士在Quota中的表示：
 
 如下图所示，生成对抗网络(GAN)中包含两部分--生成神经网络(Generator Neural Network)和判别神经网络(Discriminator Neural Network)
 
-![g1](/assets/images/gan/g1.jpg)
+<div align="center">
+<img src="/assets/images/gan/g1.jpg" width="70%" height="70%"  />
+</div>
 
 其中生成网络接收一个随机输入同时通过相关算法生成一个样本数据。如上图所示，我们可以看到生成器($$G(z)$$)接收一个符合分布$$p(z)$$的输入$$z$$，其中$$z$$是根据概率分布$$p(z)$$获得的样本。然后通过生成器生成一数据并传入判别网络$$D(x)$$中。判别网络一面接收真实数据的输入，另一方面接收生成器生成的数据，同时判断输入的数据是真实数据还是生成的数据。判别网络接收一个输入样本$$x$$来自真实数据的分布函数$$p_{data}(x)$$。然后判断网络$$D(x)$$作二元判断，通过使用sigmod函数得到输出 0或者1。
 
@@ -102,12 +106,17 @@ $$V(D, G) = E_{x\thicksim p_{data}(x)}[logD(x)] + E_{z\thicksim p_{z}(z)}[log(1-
 
 * __Part1:__ 训练判别器网络并且冻结生成器网络(冻结主要的意思是将训练设置为false，这时候只处理前向传播不进行后向传播)
 
-	![s1](/assets/images/gan/s1.jpg)
+	<div align="center">
+	<img src="/assets/images/gan/s1.jpg" width="60%" height="60%"  />
+	</div>
 
 
 * __Part2:__ 训练生成器网络冻结判别器网络
 
-	![s21](/assets/images/gan/s21.jpg)
+	<div align="center">
+	<img src="/assets/images/gan/s21.png" width="60%" height="60%"  />
+	</div>
+
 
 **训练GAN的步骤**
 
@@ -133,15 +142,24 @@ $$V(D, G) = E_{x\thicksim p_{data}(x)}[logD(x)] + E_{z\thicksim p_{z}(z)}[log(1-
 
 * __计数问题：__  GAN无法确定在某一特定位置某一物体该出现多少次。如下图所示，GAN网络在动物的脸上放置了多个眼睛。
 
-![count_problem](/assets/images/gan/count_problem.png)
+<div align="center">
+	<img src="/assets/images/gan/count_problem.png" width="60%" height="60%"  />
+</div>
+
 
 * __视角问题：__ GAN不能很好的适用于3D物体。它不了解透视，分不清前视图和后视图的区别。正如下图所示，GAN将3D对象拉平成2D平面图形
 
-![perspective_problem](/assets/images/gan/perspective_problem.png)
+<div align="center">
+	<img src="/assets/images/gan/perspective_problem.png" width="60%" height="60%"  />
+</div>
+
 
 * __全局结构问题：__ 与视角问题类似，GANs 也无法分清物体全局结构。如下图所示，在第四幅图片中给出的一头牛，这头牛站在了它的后腿上，这在现实生活中是不可能存在的。
 
-![structure_problem](/assets/images/gan/structure_problem.png)
+<div align="center">
+	<img src="/assets/images/gan/structure_problem.png" width="60%" height="60%"  />
+</div>
+
 
 有很多研究都致力于解决这些问题。并且其中一些模型也相比之前的模型具有更好的准确性，例如：DCGAN，WassersteinGAN等等。
 
@@ -152,32 +170,44 @@ $$V(D, G) = E_{x\thicksim p_{data}(x)}[logD(x)] + E_{z\thicksim p_{z}(z)}[log(1-
 
 * __预测视频中的下一帧：__ 你现在视频序列中训练得到一个GAN，并且让它预测下一帧视频将会发生什么事情。
 
-![predict_vedio](/assets/images/gan/predict_vedio.png)
+<div align="center">
+	<img src="/assets/images/gan/predict_vedio.png" width="50%" height="50%"  />
+</div>
+
 
 来自[UNSUPERVISED LEARNING OF VISUAL STRUCTURE
 USING PREDICTIVE GENERATIVE NETWORKS](https://arxiv.org/pdf/1511.06380.pdf)
 
 * __图片像素增强:__ 训练GAN，使其能将低像素图像转变成高像素图像
 
-![high_revolution](/assets/images/gan/high_revolution.png)
+<div align="center">
+	<img src="/assets/images/gan/high_revolution.png" width="60%" height="60%"  />
+</div>
 
 来自[Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network](https://arxiv.org/pdf/1609.04802.pdf)
 
 * __交互式图像生成：__ 画一些简单的笔画，让GAN为你生成印象深刻的图像
 
-![interactive_image](/assets/images/gan/interactive_image.gif)
+<div align="center">
+	<img src="/assets/images/gan/interactive_image.gif" width="50%" height="50%"  />
+</div>
+
 
 来自： https://github.com/junyanz/iGAN
 
 * __图像之间的转换：__ 从一张已知的图片生成另一张图片。例如：左边图像给出街道的标记，右边GAN生成真实的街景图像。右边图片例子，给定一个简单手绘手提包，然后生成一个真实手提包图片。
 
-![image_to_image](/assets/images/gan/image_to_image.png)
+<div align="center">
+	<img src="/assets/images/gan/image_to_image.png" width="60%" height="60%"  />
+</div>
 
 来自：[Image-to-Image Translation with Conditional Adversarial Networks](https://arxiv.org/pdf/1611.07004.pdf)
 
 * __文字转换成图片:__ 只需要告诉GAN，然后让它帮你生成相应的图片
 
-![text_to_image](/assets/images/gan/text_to_image.png)
+<div align="center">
+	<img src="/assets/images/gan/text_to_image.png" width="60%" height="60%"  />
+</div>
 
 来自: [Generative Adversarial Text to Image Synthesis](https://arxiv.org/pdf/1605.05396.pdf)
 

@@ -239,4 +239,15 @@
             font-size: 18px;
         }
     }
+   
+
+  table {
+    	border-collapse:collapse;
+    	margin:8px auto 16px auto;
+    	width:100%;
+   }
+  th, td {
+    	border: 1px solid #828282;
+    	padding: 8px;
+   }
 }
