@@ -39,7 +39,7 @@ categories: [deeplearning, machine-learning]
 对于学生从老师的教学中获取知识来看，就是基于老师常年教育积累通过授课的手段转移给学生。
 
 <div align="center">
-<img src="/assets/images/transfer_learning/transfer-learning.jpeg" width="60%" height="60%"  />
+<img src="/assets/images/transfer_learning/transfer-learning.jpeg" width="40%" height="40%"  />
 </div>
 
 
@@ -50,14 +50,14 @@ categories: [deeplearning, machine-learning]
 Tim 解释说在语言发明之前，每一代人都需要自己重新创造知识，下图展示了知识的增长是如何从一代发展到下一代的：
 
 <div align="center">
-<img src="/assets/images/transfer_learning/Knowledge-growth-graph-1b.png" width="60%" height="60%"  />
+<img src="/assets/images/transfer_learning/Knowledge-growth-graph-1b.png" width="70%" height="70%"  />
 </div>
 
 
 然后我们发明了语言，一种能够让知识一代一代传递下去的方式，这就是同一时间知识增长发生的变化
 
 <div align="center">
-<img src="/assets/images/transfer_learning/Knowledge-growth-graph-1b.png" width="60%" height="60%"  />
+<img src="/assets/images/transfer_learning/Knowledge-growth-graph-1b.png" width="70%" height="70%"  />
 </div>
 
 
