@@ -34,15 +34,22 @@ categories: [deeplearning, machine-learning]
 
 * __情绪分类（Sentiment Classification）__  这类任务可以将推文简单的分为表达的积极还是表达的消极情绪。所以输入的是任意长度的推文，则输出就是固定的推文类型。
 
-	![sentiment](/assets/images/rnn/sentiment.png)
+<div align="center">
+<img src="/assets/images/rnn/sentiment.png" width="60%" height="60%"  />
+</div>
+
 	
 * __图像标题(Image Captioning)__ 假设我们有一张图片，并且希望根据图片的内容提取相应的文字描述信息。因此，我们有一个输入--一张图片，一系列或者一串单词作为输出。在这图片大小有可能是固定的，但是输出的文字长度是不等长的。
 
-	![image_caption](/assets/images/rnn/image-captioning.png)
+	<div align="center">
+	<img src="/assets/images/rnn/image-captioning.png" width="60%" height="60%"  />
+	</div>
 
 * __语言翻译(Language Translation)__ 假设我们有一个其他语言的序列文本，例如英文，我们希望将它转换成法文。不同的语言有它特定的语法，所以同一意思的语句再不同的语言中对应的长度也不一致。所以对于该场景，输入和输出的长度都不一致。
 
-	![english-to-franch](/assets/images/rnn/English-to-french.png)
+	<div align="center">
+	<img src="/assets/images/rnn/English-to-french.png" width="60%" height="60%"  />
+	</div>
 	
 	
 所以RNN可以接收不同样式，长度的输入和输出。接下来我们来具体看下RNN的结构。
@@ -52,21 +59,33 @@ categories: [deeplearning, machine-learning]
 
 让我们看下用于预测句子中下一个单词的任务。让我们使用MLP来处理这个任务看看，那么在MLP中是怎么操作的。在这个简单的例子中，我们有一个输入层，一个隐藏层，还有一个输出层。输入层获的输入，隐藏层激活，最后通过输出层得到最终的结果。
 
-![RNN](/assets/images/rnn/RNN.png)
+<div align="center">
+<img src="/assets/images/rnn/RNN.png" width="30%" height="30%"  />
+</div>
+
 	
 接下来让我们看下拥有更多层的神经网络（如下图），在这输入层接收输入，通过几层隐藏层的处理后，将隐藏层的输出结果放入输出层得到最终的输出。每一层隐藏层都有他们自己独立的权重和偏移量参数。
 
 因为每一层都有独立的权重和偏移量参数，那么他们之间是相互独立的。接下来我们需要确定连续输入之间的关系，我们同样可以将输入数据直接传入隐藏层。
 
-![rnn_multi_layer](/assets/images/rnn/rnn1234561-768x802.png)
+<div align="center">
+<img src="/assets/images/rnn/rnn1234561-768x802.png" width="60%" height="60%"  />
+</div>
+
 
 在这，不同隐藏层的权重和偏移量是不同的。同时这些隐藏层是相互独立的所以无法进行合并。若要将隐藏层合并那他们之间的权重和偏移量必须保持一致。
 
-![run_iterme](/assets/images/rnn/rnn-intermediate-768x802.png)
+<div align="center">
+<img src="/assets/images/rnn/rnn-intermediate-768x802.png" width="60%" height="60%"  />
+</div>
+
 
 现在我们可以将这些隐藏层给合并，保证他们之间的权重和偏移量都保持一致。所有这些隐藏层可以在一个单独的循环图中一起展开。
 
-![rnn1](/assets/images/rnn/rnn1.png)
+<div align="center">
+<img src="/assets/images/rnn/rnn1.png" width="30%" height="30%"  />
+</div>
+
 
 这就好比将输入数据直接传入隐藏层。在任何时候循环神经元的权重和偏移量参数都是一样的，因为现在只有一层。因为循环神经元存储了前一输入的状态并且结合了当前输入的状态，某种层度上保留了前一输入和当前输入的关系。
 
@@ -75,7 +94,10 @@ categories: [deeplearning, machine-learning]
 
 让我们先看一个简单的例子。让我们看一个字符级别的RNN，假设我们有一个单词 ‘Hello’。我们提供前4个字符 ‘h’，‘e’，‘l’，‘l’ 然后需要神经网络预测出最后一个字符'o'。 所以在这个任务中只包含了4个字符 {'h', 'e', 'l', 'o'} 。 在实际的自然语言处理中包含了整个维基百科中包含的所有词汇，或者某种语言的所有词汇。为了简单方便起见，我们只选择了一小部分词汇。
 
-![rnn-neuron](/assets/images/rnn/rnn-neuron.png)
+<div align="center">
+<img src="/assets/images/rnn/rnn-neuron.png" width="30%" height="30%"  />
+</div>
+
 
 让我们看下上图中展示的结构是如何预测出‘hello’这个单词中的第五个字符。在上述结构中，蓝色RNN部分，使用一种循环公式，该公式结合当前输入向量和前一状态。在这个例子中，字符‘h’ 之前不包含任何字符，让我们看下字符‘e’。所以当将字符 ‘e’ 输入至网络中时，循环公式同时作用于当前字符‘e’和前一字符‘h’。这可以被认为是一个时间序列的输入。假设在时刻t，输入的字符为 ‘e’，那么t-1时刻的输入的字符为’h‘。这是循环公式同时作用于字符’e‘和’h‘，然后我们可以获得新的状态。
 
@@ -112,19 +134,28 @@ $$y_{t} = W_{hy}h_{t}$$
 
 让我们先看下相应的输入：
 
-![inputs](/assets/images/rnn/inputs.png)
+<div align="center">
+<img src="/assets/images/rnn/inputs.png" width="60%" height="60%"  />
+</div>
+
 
 该输入采用的是one-hot编码模式，我们整个词汇表只有{'h', 'e', 'l', 'o'}，所以我们可以很简单的使用one-hot编码来编码输入。
 
 那么输入层神经元可以通过权重 $$W_{xh}$$ 将输入转换成隐藏状态。我们随机初始化一个 $$3*4$$的权重矩阵。
 
-![wxh](/assets/images/rnn/wxh.png)
+<div align="center">
+<img src="/assets/images/rnn/wxh.png" width="60%" height="60%"  />
+</div>
+
 
 **Step 1**
 
 对应字符'h'，我们可以采用$$W_{xh}*X_{t}$$来获取隐藏状态，如下所示：
 
-![first-state-h](/assets/images/rnn/first-state-h.png)
+<div align="center">
+<img src="/assets/images/rnn/first-state-h.png" width="60%" height="60%"  />
+</div>
+
 
 **Step 2**
 
@@ -134,7 +165,10 @@ $$y_{t} = W_{hy}h_{t}$$
 
 所以通过公式 $$W_{hh}h_{t-1} + bias$$ 计算：
 
-![whht](/assets/images/rnn/WHHT-1-1.png)
+<div align="center">
+<img src="/assets/images/rnn/WHHT-1-1.png" width="60%" height="60%"  />
+</div>
+
 
 **Step 3**
 
@@ -144,7 +178,10 @@ $$h_{t} = tanh(W_{hh}h_{t-1} + W_{xh}X_{t})$$
 
 对应字符 ’h‘ 没有前一状态，所以我们将函数 $$tanh$$ 直接作用于 $$W_{xh}X_{t}$$，那么我们就能得到当前状态
 
-![ht-h](/assets/images/rnn/ht-h.png)
+<div align="center">
+<img src="/assets/images/rnn/ht-h.png" width="60%" height="60%"  />
+</div>
+
 
 **Step 4**
 
@@ -154,17 +191,26 @@ $$h_{t} = tanh(W_{hh}h_{t-1} + W_{xh}X_{t})$$
 
 $$W_{hh}h_{t-1} + bias$$ 的计算结果将为：
 
-![new-ht](/assets/images/rnn/new-ht-1.png)
+<div align="center">
+<img src="/assets/images/rnn/new-ht-1.png" width="60%" height="60%"  />
+</div>
+
 
 $$W_{xh}*X_{t}$$ 的计算结果为：
 
-![state-e](/assets/images/rnn/state-e.png)
+<div align="center">
+<img src="/assets/images/rnn/state-e.png" width="60%" height="60%"  />
+</div>
+
 
 **Step 5**
 
 接下来，让我们计算字符 'e' 的状态 $$h_{t}$$
 
-![htletter-e](/assets/images/rnn/htletter-e.png)
+<div align="center">
+<img src="/assets/images/rnn/htletter-e.png" width="60%" height="60%"  />
+</div>
+
 
 紧接着$$h_{t}$$会变成 $$h_{t-1}$$ 对应不断的输入来说。
 
@@ -174,14 +220,19 @@ $$W_{xh}*X_{t}$$ 的计算结果为：
 
 $$y_{t} = W_{hy}h_{t}$$
 
-![ytfinal123](/assets/images/rnn/ytfinal123.png)
+<div align="center">
+<img src="/assets/images/rnn/ytfinal123.png" width="60%" height="60%"  />
+</div>
 
 
 **Step 7**
 
 计算不同字符的概率值，我们采用softmax函数来进行计算 $$softmax(y_{t})$$ 
 
-![classwise-prob](/assets/images/rnn/classwise-prob.png)
+<div align="center">
+<img src="/assets/images/rnn/classwise-prob.png" width="60%" height="60%"  />
+</div>
+
 
 如果我们将这个概率转换成我们可以理解的预测，我们可以看到在字符 ’e‘ 之后是字符 ’h‘ 的概率要高一些。这是不是意味着我们计算出错了？不，因为我们只训练了两个字符。
 
@@ -193,7 +244,10 @@ $$y_{t} = W_{hy}h_{t}$$
 
 在前向传播中，输入数据并且每一次向前移动一步。在这我们每计算一步都会方向更新下权重，我们将它称之为基于时间的方向传播( Back propagation through time BPTT)
 
-![bptt](/assets/images/rnn/bptt.png)
+<div align="center">
+<img src="/assets/images/rnn/bptt.png" width="60%" height="60%"  />
+</div>
+
 
 在本例的RNN中，如果 $$y_{t}$$ 是预测值，$$\bar{y_{t}}$$ 是实际的结果值，我们通过交叉熵损失函数：
 
@@ -223,7 +277,10 @@ $$\frac{\partial{E}}{\partial{W}} = \frac{\partial{E}}{\partial{y_{3}}}*\frac{\p
 
 在这我们使用链式法则来进行后向传播，假设其中一个梯度计算出来等于零或者接近于零。由于乘法的原因会导致最终的结果为零。这样对于整个网络的学习是不利的，因为学习不到任何知识。这就是通常我们说的梯度消失问题。
 
-![grad_vanishing](/assets/images/rnn/grad_vanishi.png)
+<div align="center">
+<img src="/assets/images/rnn/grad_vanishing.png" width="60%" height="60%"  />
+</div>
+
 
 相比由于单个或者多个梯度值变得非常高，梯度变得非常大引起的梯度爆炸，梯度消失对整个网络的学习更加的不利。
 
@@ -238,7 +295,10 @@ $$\frac{\partial{E}}{\partial{W}} = \frac{\partial{E}}{\partial{y_{3}}}*\frac{\p
 
 另外一个类RNN模型是Gated Recurrent Units(GRU)，它是LSTM的变种，但是具有更简单的结构，并且训练会更加方便。
 
-![lstm_gru](/assets/images/rnn/lstm_gru.png)
+<div align="center">
+<img src="/assets/images/rnn/lstm_gru.png" width="60%" height="60%"  />
+</div>
+
 
 <h3 id="8">8. 参考文献</h3>
 
