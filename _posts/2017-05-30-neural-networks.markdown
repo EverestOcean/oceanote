@@ -39,7 +39,10 @@ categories: [deeplearning,machine-learning]
 
 感知机可以被认为是通过获取多个输入，通过某种计算，最终得到一个输出的处理单元，如图1所示：
 
-![感知机(perceptron)](/assets/images/neural_networks/perceptron.png)
+<div align="center">
+<img src="/assets/images/neural_networks/perceptron.png" width="60%" height="60%"  />
+</div>
+
 
 通过上图可以看出，感知机获取三个输入，并最终输出一个结果。那么接下来的逻辑是，这三个输入与最终的输出结果之间是什么样的关系呢？让我们先从简单的逻辑开始，在此基础上再进一步引申出更复杂的逻辑。
 
@@ -74,7 +77,10 @@ $$a = f(\sum w_ix_i)$$
 
 现在让我们来看下什么是多层感知机。到目前为止，我们了解到了单层感知机拥有三个输入节点 $$x_1, x_2, x_3$$, 一个输出层。但是在实际的应用中单层神经网络的能力还是比较有限。多层感知机是在输入层(Input Layer)和输出层(Output Layer)中间添加多层隐含层(Hidden Layer), 如下图所示：
 
-![多层感知机(perceptron)](/assets/images/neural_networks/multi_layer_perception.png)
+<div align="center">
+<img src="/assets/images/neural_networks/multi_layer_perception.png" width="70%" height="70%"  />
+</div>
+
 
 上图展示的是包含一层隐藏层(使用绿色表示)，但是在实际应用中可以包含多层隐藏层。另外一个需要注意的地方是所有的层都是全连接，换句话说，每一层的所有节点都与前一层及下一层的所有节点两两相互连接。
 
@@ -97,7 +103,10 @@ $$a = f(\sum w_ix_i)$$
 
 <h3 id="3">3. 神经网络方法操作步骤</h3>
 
-![多层感知机(perceptron)](/assets/images/neural_networks/multi_layer_perception.png)
+<div align="center">
+<img src="/assets/images/neural_networks/multi_layer_perception.png" width="70%" height="70%"  />
+</div>
+
 
 让我们来看下神经网络每一步都是怎么处理的。如上图所示，在输出层只有一个神经元，这个可以用来处理分类问题（预测0或者1）。我们同样可以使用两个神经元来同时预测两种类别。
 
@@ -179,23 +188,35 @@ $$a = f(\sum w_ix_i)$$
 
 **Step 0:** 读取输入和输出矩阵
 
-![step 0](/assets/images/neural_networks/neural_network_visualization_step0.jpg)
+<div align="center">
+<img src="/assets/images/neural_networks/neural_network_visualization_step0.jpg" width="90%" height="90%"  />
+</div>
+
 
 **Step 1** 初始化权重矩阵和偏移矩阵(初始化权重矩阵和偏移矩阵的方法有很多，这边采用的随机方法)
 
-![step 1](/assets/images/neural_networks/neural_network_visualization_step1.png)
+<div align="center">
+<img src="/assets/images/neural_networks/neural_network_visualization_step1.png" width="90%" height="90%"  />
+</div>
+
 
 **Step 2** 计算隐藏层的输入
 
 $$hidden\_layer\_input= matrix\_dot\_product(X,wh) + bh$$
 
-![step 2](/assets/images/neural_networks/neural_network_visualization_step2.png)
+<div align="center">
+<img src="/assets/images/neural_networks/neural_network_visualization_step2.png" width="90%" height="90%"  />
+</div>
+
 
 **Step 3** 对隐藏层做非线性变换
 
 $$hiddenlayer\_activations = sigmoid(hidden\_layer\_input)$$
 
-![step 3](/assets/images/neural_networks/neural_network_visualization_step3.png)
+<div align="center">
+<img src="/assets/images/neural_networks/neural_network_visualization_step3.png" width="90%" height="90%"  />
+</div>
+
 
 **Step 4** 计算输出层线性和非线性变换的结果
 
@@ -203,13 +224,19 @@ $$output\_layer\_input = matrix\_dot\_product (hiddenlayer\_activations * wout )
 
 $$output = sigmoid(output\_layer\_input)$$
 
-![step 4](/assets/images/neural_networks/neural_network_visualization_step4.png)
+<div align="center">
+<img src="/assets/images/neural_networks/neural_network_visualization_step4.png" width="90%" height="90%"  />
+</div>
+
 
 **Step 5** 计算预测误差
 
 $$E = y-output$$
 
-![step 5](/assets/images/neural_networks/neural_network_visualization_step5.png)
+<div align="center">
+<img src="/assets/images/neural_networks/neural_network_visualization_step5.png" width="90%" height="90%"  />
+</div>
+
 
 **Step 6** 计算输出层，隐藏层梯度
 
@@ -217,25 +244,37 @@ $$Slope\_output\_layer= derivatives\_sigmoid(output)$$
 
 $$Slope\_hidden\_layer = derivatives\_sigmoid(hiddenlayer\_activations)$$
 
-![step 6](/assets/images/neural_networks/neural_network_visualization_step6.png)
+<div align="center">
+<img src="/assets/images/neural_networks/neural_network_visualization_step6.png" width="90%" height="90%"  />
+</div>
+
 
 **Step 7** 计算输出层增量
 
 $$d\_output = E * slope\_output\_layer*lr$$
 
-![step 7](/assets/images/neural_networks/neural_network_visualization_step7.png)
+<div align="center">
+<img src="/assets/images/neural_networks/neural_network_visualization_step7.png" width="90%" height="90%"  />
+</div>
+
 
 **Step 8** 计算隐藏层的偏差
 
 $$Error\_at\_hidden\_layer = matrix\_dot\_product(d\_output, wout.Transpose)$$
 
-![step 8](/assets/images/neural_networks/neural_network_visualization_step8.png)
+<div align="center">
+<img src="/assets/images/neural_networks/neural_network_visualization_step8.png" width="90%" height="90%"  />
+</div>
+
 
 **Step 9** 计算隐藏层的增量
 
 $$d\_hiddenlayer = Error\_at\_hidden\_layer * slope\_hidden\_layer$$
 
-![step 9](/assets/images/neural_networks/neural_network_visualization_step9.png)
+<div align="center">
+<img src="/assets/images/neural_networks/neural_network_visualization_step9.png" width="90%" height="90%"  />
+</div>
+
 
 **Step 10** 更新输出层，隐藏层权重
 
@@ -243,7 +282,10 @@ $$wout = wout + matrix\_dot\_product(hiddenlayer\_activations.Transpose, d_outpu
 
 $$wh =  wh+ matrix\_dot\_product(X.Transpose,d\_hiddenlaye$$
 
-![step 10](/assets/images/neural_networks/neural_network_visualization_step10.png)
+<div align="center">
+<img src="/assets/images/neural_networks/neural_network_visualization_step10.png" width="90%" height="90%"  />
+</div>
+
 
 
 **Step 11** 更新输出层，隐藏层偏移量
@@ -253,7 +295,9 @@ $$bh = bh + sum(d\_hiddenlayer, axis=0) * learning
 
 $$bout = bout + sum(d\_output, axis=0)*learning\_rate$$
 
-![step 11](/assets/images/neural_networks/neural_network_visualization_step11.png)
+<div align="center">
+<img src="/assets/images/neural_networks/neural_network_visualization_step11.png" width="90%" height="90%"  />
+</div>
 
 
 <h3 id="5">5. 后向算法数学推理</h3>
